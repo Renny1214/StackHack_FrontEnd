@@ -1,0 +1,147 @@
+.back {
+  background: linear-gradient(to bottom right, #c060a1,#035aa6);
+  margin: 2rem;
+  height: 90vh;
+  border-radius: 25px;
+}
+li {
+    list-style-type: none;
+}
+a:hover{
+    cursor: pointer;
+}
+.cards {
+  border-radius: 0px;
+  background-color: white;
+  border: 0;
+  position: relative;
+  transition: all 200ms ease-in;
+  transform: scale(1);
+}
+.cards:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  z-index: 2;
+  transition: all 200ms ease-in;
+  transform: scale(1.2);
+}
+.center-pos {
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+}
+.card {
+  height: 28rem;
+  width: 65rem;
+}
+.hello
+{
+    text-align: left;
+    font-size: 1.5rem;
+    color: #035aa6;
+}
+.name
+{
+    text-align: left;
+    font-size: 2rem;
+    color: #035aa6;
+    line-height: 0.5cm;
+}
+.date
+{
+    text-align: left;
+    color: #8ec6c5;
+    line-height: 1.2cm;
+}
+.num
+{
+    color:#035aa6;
+    font-size: 1rem;
+}
+.task
+{
+    color:#8ec6c5;
+    font-size: 0.5rem;
+}
+.all
+{
+    text-align: left;
+    color:#035aa6;
+    font-size: 0.7rem;
+}
+.icon
+{
+    text-align: left;
+    color:lightgreen;
+}
+.num-size
+{
+    font-size: 0.7rem;
+    color: lightgreen;
+}
+.task-head
+{
+    color:#035aa6;
+    font-size: 1rem;
+}
+.second-date
+{
+    color:#8ec6c5;
+    line-height: .1cm;
+    font-size: .7rem;
+}
+.sub-head
+{
+    color:#8ec6c5;
+    font-size: .8rem;
+}
+a:hover{
+    color:red;
+    text-decoration: none;
+}
+.task-given
+{
+    color:#035aa6;
+    font-size: 1.5rem;
+}
+.second-icon
+{
+    color:lightgreen;
+}
+.heading
+{
+    font-size: .8rem;
+    font-weight: bold;
+    color:#035aa6;
+}
+.category
+{
+    color:#8ec6c5;
+    font-size: .5rem;
+}
+/* Container for the text that expands on hover */
+.expanded-text {
+    width: 100%;
+}
+/* Longer name hidden by default  */
+span.longer-name{
+ display:none;
+}
+/* On hover, hide the short name */
+.expanded-text:hover span.short-name{
+ display:none;
+}
+/* On hover, display the longer name.  */
+.expanded-text:hover span.longer-name{
+ display:block;
+}
+.time
+{
+    font-size: .6rem;
+    color:lightgreen;
+}
+.edit
+{
+    font-size: 1rem;
+    color:#035aa6;
+}
