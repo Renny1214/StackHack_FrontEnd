@@ -1,14 +1,14 @@
 .back {
-  background: linear-gradient(to bottom right, #c060a1,#035aa6);
+  background: linear-gradient(to bottom right, #c060a1, #035aa6);
   margin: 2rem;
   height: 90vh;
   border-radius: 25px;
 }
 li {
-    list-style-type: none;
+  list-style-type: none;
 }
-a:hover{
-    cursor: pointer;
+a:hover {
+  cursor: pointer;
 }
 .cards {
   border-radius: 0px;
@@ -34,114 +34,271 @@ a:hover{
   height: 28rem;
   width: 65rem;
 }
-.hello
-{
-    text-align: left;
-    font-size: 1.5rem;
-    color: #035aa6;
+.hello {
+  text-align: left;
+  font-size: 1.5rem;
+  color: #035aa6;
 }
-.name
-{
-    text-align: left;
-    font-size: 2rem;
-    color: #035aa6;
-    line-height: 0.5cm;
+.name {
+  text-align: left;
+  font-size: 2rem;
+  color: #035aa6;
+  line-height: 0.5cm;
 }
-.date
-{
-    text-align: left;
-    color: #8ec6c5;
-    line-height: 1.2cm;
+.date {
+  text-align: left;
+  color: #8ec6c5;
+  line-height: 1.2cm;
 }
-.num
-{
-    color:#035aa6;
-    font-size: 1rem;
+.num {
+  color: #035aa6;
+  font-size: 1rem;
 }
-.task
-{
-    color:#8ec6c5;
-    font-size: 0.5rem;
+.task {
+  color: #8ec6c5;
+  font-size: 0.5rem;
 }
-.all
-{
-    text-align: left;
-    color:#035aa6;
-    font-size: 0.7rem;
+.all {
+  text-align: left;
+  color: #035aa6;
+  font-size: 0.7rem;
 }
-.icon
-{
-    text-align: left;
-    color:lightgreen;
+.icon {
+  text-align: left;
+  color: lightgreen;
 }
-.num-size
-{
-    font-size: 0.7rem;
-    color: lightgreen;
+.num-size {
+  font-size: 0.7rem;
+  color: lightgreen;
 }
-.task-head
-{
-    color:#035aa6;
-    font-size: 1rem;
+.task-head {
+  color: #035aa6;
+  font-size: 1rem;
 }
-.second-date
-{
-    color:#8ec6c5;
-    line-height: .1cm;
-    font-size: .7rem;
+.second-date {
+  color: #8ec6c5;
+  line-height: 0.1cm;
+  font-size: 0.7rem;
 }
-.sub-head
-{
-    color:#8ec6c5;
-    font-size: .8rem;
+.sub-head {
+  color: #8ec6c5;
+  font-size: 0.8rem;
 }
-a:hover{
-    color:red;
-    text-decoration: none;
+a:hover {
+  color: red;
+  text-decoration: none;
 }
-.task-given
-{
-    color:#035aa6;
-    font-size: 1.5rem;
+.task-given {
+  color: #035aa6;
+  font-size: 1.5rem;
 }
-.second-icon
-{
-    color:lightgreen;
+.second-icon {
+  color: lightgreen;
 }
-.heading
-{
-    font-size: .8rem;
-    font-weight: bold;
-    color:#035aa6;
+.heading {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #035aa6;
 }
-.category
-{
-    color:#8ec6c5;
-    font-size: .5rem;
+.category {
+  color: #8ec6c5;
+  font-size: 0.5rem;
 }
 /* Container for the text that expands on hover */
 .expanded-text {
-    width: 100%;
+  width: 100%;
 }
 /* Longer name hidden by default  */
-span.longer-name{
- display:none;
+span.longer-name {
+  display: none;
 }
 /* On hover, hide the short name */
-.expanded-text:hover span.short-name{
- display:none;
+.expanded-text:hover span.short-name {
+  display: none;
 }
 /* On hover, display the longer name.  */
-.expanded-text:hover span.longer-name{
- display:block;
+.expanded-text:hover span.longer-name {
+  display: block;
 }
-.time
-{
-    font-size: .6rem;
-    color:lightgreen;
+.time {
+  font-size: 0.6rem;
+  color: lightgreen;
 }
-.edit
-{
-    font-size: 1rem;
-    color:#035aa6;
+.edit {
+  font-size: 1rem;
+  color: #035aa6;
+}
+.scroll {
+  overflow: auto;
+}
+.form__group {
+  position: relative;
+  padding: 12px 0 0;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1rem;
+  color: #035aa6;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.form__field::placeholder {
+  color: transparent;
+}
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 1rem;
+  cursor: text;
+  top: 20px;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #8ec6c5;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, lightgreen, #c060a1);
+  border-image-slice: 1;
+}
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #11998e;
+  font-weight: 700;
+}
+
+/* reset input */
+.form__field:required,
+.form__field:invalid {
+  box-shadow: none;
+}
+
+.btn-bubble {
+  color: white;
+  background-color: lightgreen;
+  background-repeat: no-repeat;
+}
+.btn-bubble:hover,
+.btn-bubble:focus {
+  animation: bubbles 1s forwards ease-out;
+  background: radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 30%,
+        #eeeeff 60%,
+        #eeeeff 65%,
+        rgba(0, 0, 0, 0) 70%
+      )
+      22% 114% / 0.65em 0.65em,
+    radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 30%,
+        #eeeeff 60%,
+        #eeeeff 65%,
+        rgba(0, 0, 0, 0) 70%
+      )
+      37% 95% / 0.5em 0.5em,
+    radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 30%,
+        #eeeeff 60%,
+        #eeeeff 65%,
+        rgba(0, 0, 0, 0) 70%
+      )
+      56% 84% / 0.6em 0.6em,
+    radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 30%,
+        #eeeeff 60%,
+        #eeeeff 65%,
+        rgba(0, 0, 0, 0) 70%
+      )
+      4% 121% / 0.52em 0.52em,
+    radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 30%,
+        #eeeeff 60%,
+        #eeeeff 65%,
+        rgba(0, 0, 0, 0) 70%
+      )
+      87% 137% / 0.89em 0.89em,
+    radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 30%,
+        #eeeeff 60%,
+        #eeeeff 65%,
+        rgba(0, 0, 0, 0) 70%
+      )
+      59% 87% / 1.08em 1.08em,
+    radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 30%,
+        #eeeeff 60%,
+        #eeeeff 65%,
+        rgba(0, 0, 0, 0) 70%
+      )
+      69% 81% / 0.75em 0.75em,
+    radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 30%,
+        #eeeeff 60%,
+        #eeeeff 65%,
+        rgba(0, 0, 0, 0) 70%
+      )
+      55% 137% / 0.85em 0.85em,
+    radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 30%,
+        #eeeeff 60%,
+        #eeeeff 65%,
+        rgba(0, 0, 0, 0) 70%
+      )
+      5% 127% / 1.04em 1.04em,
+    radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 30%,
+        #eeeeff 60%,
+        #eeeeff 65%,
+        rgba(0, 0, 0, 0) 70%
+      )
+      36% 128% / 0.51em 0.51em,
+    radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 30%,
+        #eeeeff 60%,
+        #eeeeff 65%,
+        rgba(0, 0, 0, 0) 70%
+      )
+      61% 109% / 0.89em 0.89em;
+  background-color: lightgreen;
+  background-repeat: no-repeat;
+}
+
+@keyframes bubbles {
+  100% {
+    background-position: 30% 3%, 44% -331%, 54% 17%, 1% -106%, 92% -277%,
+      54% -26%, 78% -85%, 54% -334%, -1% -308%, 29% -47%, 55% -242%;
+    box-shadow: inset 0 -6.5em 0 #8ec6c5;
+  }
+}
+.btn {
+  display: inline-block;
+  text-decoration: none;
 }
