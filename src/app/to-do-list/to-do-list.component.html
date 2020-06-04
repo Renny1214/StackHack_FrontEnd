@@ -101,7 +101,7 @@
                   <div class="d-flex justify-content-around edit mt-2">
                     <a (click)="setTaskToEdit(task)"><abbr title="Edit"><i
                           class="fas fa-edit"></i></abbr></a>
-                    <a (click)="markCompleted(i)">
+                    <a *ngIf="!task.completed" (click)="markCompleted(i)">
                       <abbr title="Mark as completed"><i class="fas fa-check-circle"></i></abbr></a>
                   </div>
                 </span>
@@ -142,6 +142,7 @@
             </div>
             <button *ngIf="showAdd" class="btn btn-bubble mt-3" (click)="add()">Add Task</button>
             <button *ngIf="!showAdd" class="btn btn-bubble mt-3" (click)="update()">Update Task</button>
+            
           </form>
         </div>
       </div>

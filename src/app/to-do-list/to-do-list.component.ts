@@ -73,7 +73,6 @@ export class ToDoListComponent implements OnInit {
       this.httpCLient.post(url, this.data).subscribe((res) => {
         this.showLoading = false;
         console.log(res);
-
         location.reload();
       },
         error => {
@@ -267,8 +266,8 @@ export class ToDoListComponent implements OnInit {
 
     const arr = ['high', 'medium', 'low'];
 
-    if (arr.indexOf(this.data.priority) !== -1) {
-      this.edit.priority = arr.indexOf(this.data.priority) + 1;
+    if (arr.indexOf(this.priority) !== -1) {
+      this.edit.priority = arr.indexOf(this.priority) + 1;
     }
     
     if (this.data.completed !== null && this.data.completed !== undefined) {
