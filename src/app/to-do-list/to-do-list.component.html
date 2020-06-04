@@ -16,21 +16,21 @@
                 <div class="mt-3">
                   <i class="fas fa-book icon"></i>
                   <a href="#" class="all"> All Schedule</a>
-                  <div class="num-size">57 TASKS</div>
+                  <div class="num-size">{{ this.allLength - this.completed }} TASKS</div>
                 </div>
               </div>
               <div class="mt-3 border-top">
                 <div class="mt-3">
                   <i class="fas fa-user icon"></i>
-                  <a href="#" class="all"> Personal Errands</a>
-                  <div class="num-size">0 TASKS</div>
+                  <a href="#" class="all" (click)="filter('personal')"> Personal Errands</a>
+                  <div class="num-size">{{ this.personal }} TASKS</div>
                 </div>
               </div>
               <div class="mt-3 border-top">
                 <div class="mt-3">
                   <i class="fas fa-briefcase icon"></i>
-                  <a href="#" class="all"> Work Projects</a>
-                  <div class="num-size">20 TASKS</div>
+                  <a href="#" class="all" (click)="filter('work')"> Work Projects</a>
+                  <div class="num-size">{{ this.work }} TASKS</div>
                 </div>
               </div>
             </div>
@@ -40,15 +40,22 @@
               <div class="mt-3 border-top">
                 <div class="mt-3">
                   <i class="fas fa-book-open icon"></i>
-                  <a href="#" class="all"> School</a>
-                  <div class="num-size">15 TASKS</div>
+                  <a href="#" class="all" (click)="filter('school')"> School</a>
+                  <div class="num-size">{{ this.school }} TASKS</div>
                 </div>
               </div>
               <div class="mt-3 border-top">
                 <div class="mt-3">
                   <i class="fas fa-shopping-bag icon"></i>
-                  <a href="#" class="all"> Grocery List</a>
-                  <div class="num-size">7 TASKS</div>
+                  <a href="#" class="all" (click)="filter('shopping')"> Grocery List</a>
+                  <div class="num-size">{{ this.shopping }} TASKS</div>
+                </div>
+              </div>
+              <div class="mt-3 border-top">
+                <div class="mt-3">
+                  <i class="fas fa-shopping-bag icon"></i>
+                  <a href="#" class="all"> Others</a>
+                  <div class="num-size">{{ this.other }} TASKS</div>
                 </div>
               </div>
             </div>
@@ -58,7 +65,6 @@
       <div class="card cards scroll">
         <div class="card-body text-center">
           <p class="card-text font-weight-bold task-head">Work Projects</p>
-          <div class="second-date">12th January ,2020</div>
           <div class="d-flex justify-content-around pt-4">
             <a href="#" class="sub-head" (click)="getAll()">ALL</a>
             <a href="#" class="sub-head" (click)="getProgress()">IN PROGRESS</a>
@@ -90,7 +96,7 @@
                       <i class="fas fa-calendar-alt"></i>
                       <span> {{ getDate(task.date.due) }}</span>
                     </div>
-                    <div><i class="far fa-clock"></i>  00:00</div>
+                    <div><i class="far fa-clock"></i> 00:00</div>
                   </div>
                   <div class="d-flex justify-content-around edit mt-2">
                     <a><abbr title="Edit"><i class="fas fa-edit"></i></abbr></a>

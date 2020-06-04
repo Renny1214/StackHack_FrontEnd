@@ -28,6 +28,12 @@ export class ToDoListComponent implements OnInit {
     }
   };
 
+  personal = 0;
+  work = 0;
+  school = 0;
+  shopping = 0;
+  other = 0;
+
   constructor(private httpCLient: HttpClient) { }
 
   async ngOnInit() {
@@ -36,7 +42,7 @@ export class ToDoListComponent implements OnInit {
   }
 
   enterCategory(event) {
-    this.data.category = event.target.value;
+    this.data.category = event.target.value.toLowerCase();
   }
   enterEvent(event) {
     this.data.task = event.target.value;
@@ -88,6 +94,24 @@ export class ToDoListComponent implements OnInit {
       this.tasks = res;
 
       this.allLength = this.tasks.length;
+
+      for(let i = 0; i < this.tasks.length; i++) {
+        if(this.tasks[i].category.toLowerCase() === 'personal') {
+          this.personal += 1;
+        }
+        else if(this.tasks[i].category.toLowerCase() === 'work') {
+          this.work += 1;
+        }
+        else if(this.tasks[i].category.toLowerCase() === 'school') {
+          this.school += 1;
+        }
+        else if(this.tasks[i].category.toLowerCase() === 'shopping') {
+          this.shopping += 1;
+        }
+        else {
+          this.other += 1;
+        }
+      }
     }, error => {
       this.innerLoading = false;
     });
@@ -180,5 +204,18 @@ export class ToDoListComponent implements OnInit {
       arr = res;
       this.completed = arr.length;
     });
+  }
+
+  filter(category) {
+    const url = 'https://stackhack-node.herokuapp.com/category/' + category;
+    this.tasks = [];
+    this.innerLoading = true;
+
+    this.httpCLient.get(url).subscribe((res: any) => {
+      this.tasks = res;
+      this.innerLoading = false;
+    }, error => {
+      this.innerLoading = false;
+    })
   }
 }
