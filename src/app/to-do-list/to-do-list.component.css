@@ -9,6 +9,8 @@ li {
 }
 a:hover {
   cursor: pointer;
+  color: red;
+  text-decoration: none;
 }
 .cards {
   border-radius: 0px;
@@ -83,10 +85,6 @@ a:hover {
 .sub-head {
   color: #8ec6c5;
   font-size: 0.8rem;
-}
-a:hover {
-  color: red;
-  text-decoration: none;
 }
 .task-given {
   color: #035aa6;
@@ -164,7 +162,7 @@ span.longer-name {
   top: 0;
   display: block;
   transition: 0.2s;
-  font-size: 1rem;
+  font-size: .5rem;
   color: #8ec6c5;
 }
 
@@ -301,4 +299,29 @@ span.longer-name {
 .btn {
   display: inline-block;
   text-decoration: none;
+}
+@media screen and (max-width: 800px) {
+    .card {
+        height: 30rem;
+        width: 15rem;
+      }
+      .back {
+        background: linear-gradient(to bottom right, #c060a1, #035aa6);
+        margin: 2rem;
+        height: 100vh;
+        border-radius: 25px;
+      }
+      .center-pos {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+      .cards {
+        border-radius: 0px;
+        background-color: white;
+        border: 0;
+        position: relative
+      }
 }
