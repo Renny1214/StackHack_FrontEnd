@@ -99,7 +99,8 @@
                     <div><i class="far fa-clock"></i> 00:00</div>
                   </div>
                   <div class="d-flex justify-content-around edit mt-2">
-                    <a><abbr title="Edit"><i class="fas fa-edit"></i></abbr></a>
+                    <a (click)="setTaskToEdit(task)"><abbr title="Edit"><i
+                          class="fas fa-edit"></i></abbr></a>
                     <a (click)="markCompleted(i)">
                       <abbr title="Mark as completed"><i class="fas fa-check-circle"></i></abbr></a>
                   </div>
@@ -139,7 +140,8 @@
               <label for="priority" class="form__label">Priority (low, medium, high)
               </label>
             </div>
-            <button class="btn btn-bubble mt-3" (click)="add()">Add Task</button>
+            <button *ngIf="showAdd" class="btn btn-bubble mt-3" (click)="add()">Add Task</button>
+            <button *ngIf="!showAdd" class="btn btn-bubble mt-3" (click)="update()">Update Task</button>
           </form>
         </div>
       </div>

@@ -16,6 +16,7 @@ export class ToDoListComponent implements OnInit {
   tasks = [];
   completed;
   allLength;
+  showAdd = true;
 
   data = {
     category: null,
@@ -27,6 +28,8 @@ export class ToDoListComponent implements OnInit {
       due: null
     }
   };
+
+  edit;
 
   personal = 0;
   work = 0;
@@ -70,13 +73,13 @@ export class ToDoListComponent implements OnInit {
       this.httpCLient.post(url, this.data).subscribe((res) => {
         this.showLoading = false;
         console.log(res);
-        
+
         location.reload();
       },
         error => {
           this.showLoading = false;
           alert('Error in adding task');
-        })
+        });
     }
     else {
       this.showLoading = false;
@@ -95,17 +98,17 @@ export class ToDoListComponent implements OnInit {
 
       this.allLength = this.tasks.length;
 
-      for(let i = 0; i < this.tasks.length; i++) {
-        if(this.tasks[i].category.toLowerCase() === 'personal') {
+      for (let i = 0; i < this.tasks.length; i++) {
+        if (this.tasks[i].category.toLowerCase() === 'personal') {
           this.personal += 1;
         }
-        else if(this.tasks[i].category.toLowerCase() === 'work') {
+        else if (this.tasks[i].category.toLowerCase() === 'work') {
           this.work += 1;
         }
-        else if(this.tasks[i].category.toLowerCase() === 'school') {
+        else if (this.tasks[i].category.toLowerCase() === 'school') {
           this.school += 1;
         }
-        else if(this.tasks[i].category.toLowerCase() === 'shopping') {
+        else if (this.tasks[i].category.toLowerCase() === 'shopping') {
           this.shopping += 1;
         }
         else {
@@ -186,6 +189,7 @@ export class ToDoListComponent implements OnInit {
 
     this.httpCLient.get(url).subscribe((res: any) => {
       alert('Task marked completed');
+      location.reload();
       this.current();
     });
   }
@@ -217,5 +221,63 @@ export class ToDoListComponent implements OnInit {
     }, error => {
       this.innerLoading = false;
     })
+  }
+
+  setTaskToEdit(task) {
+    this.edit = task;
+    const priority = ['high', 'medium', 'low'];
+
+    document.getElementById('category').setAttribute('value', this.edit.category);
+    document.getElementById('event').setAttribute('value', this.edit.task);
+
+    const date = new Date(this.edit.date.due);
+    const value = date.getFullYear() + '-' + this.setMonth(date.getMonth()) + '-' + this.setDate(date.getDate());
+    document.getElementById('date').setAttribute('value', value);
+    document.getElementById('time').setAttribute('value', '00:00');
+    document.getElementById('priority').setAttribute('value', priority[this.edit.priority - 1]);
+    this.showAdd = false;
+  }
+  setMonth(month) {
+    if (month < 10) {
+      return '0' + month;
+    }
+
+    return month;
+  }
+  setDate(date) {
+    if (date < 10) {
+      return '0' + date;
+    }
+
+    return date;
+  }
+
+  update() {
+    const url = 'https://stackhack-node.herokuapp.com/edit';
+    this.showLoading = true;
+
+    if(this.data.category !== null && this.data.category !== undefined) {
+      this.edit.category = this.data.category;
+    }
+    if(this.data.task !== null && this.data.task !== undefined) {
+      this.edit.task = this.data.task;
+    }
+    if(this.data.priority !== null && this.data.priority !== undefined) {
+      this.edit.priority = this.data.priority;
+    }
+    if(this.data.completed !== null && this.data.completed !== undefined) {
+      this.edit.completed = this.data.completed;
+    }
+    if(this.data.date.due !== null && this.data.date.due !== undefined) {
+      this.edit.date = this.data.date;
+    }
+
+    this.httpCLient.post(url, this.edit).subscribe((res) => {
+      this.showLoading = false;
+      location.reload();
+    }, error => {
+      console.log('Error in updation');
+      this.showLoading = false;
+    });
   }
 }

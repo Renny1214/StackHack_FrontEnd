@@ -288,6 +288,10 @@ span.longer-name {
   background-repeat: no-repeat;
 }
 
+.width-100 {
+  width: 100%;
+}
+
 @keyframes bubbles {
   100% {
     background-position: 30% 3%, 44% -331%, 54% 17%, 1% -106%, 92% -277%,
