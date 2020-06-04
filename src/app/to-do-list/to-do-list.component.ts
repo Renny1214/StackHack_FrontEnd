@@ -229,6 +229,7 @@ export class ToDoListComponent implements OnInit {
 
     document.getElementById('category').setAttribute('value', this.edit.category);
     document.getElementById('event').setAttribute('value', this.edit.task);
+    document.getElementById('heading').innerHTML = 'Update existing Task';
 
     const date = new Date(this.edit.date.due);
     const value = date.getFullYear() + '-' + this.setMonth(date.getMonth()) + '-' + this.setDate(date.getDate());
@@ -256,19 +257,23 @@ export class ToDoListComponent implements OnInit {
     const url = 'https://stackhack-node.herokuapp.com/edit';
     this.showLoading = true;
 
-    if(this.data.category !== null && this.data.category !== undefined) {
+    if (this.data.category !== null && this.data.category !== undefined) {
       this.edit.category = this.data.category;
     }
-    if(this.data.task !== null && this.data.task !== undefined) {
+    if (this.data.task !== null && this.data.task !== undefined) {
       this.edit.task = this.data.task;
     }
-    if(this.data.priority !== null && this.data.priority !== undefined) {
-      this.edit.priority = this.data.priority;
+
+    const arr = ['high', 'medium', 'low'];
+
+    if (arr.indexOf(this.data.priority) !== -1) {
+      this.edit.priority = arr.indexOf(this.data.priority) + 1;
     }
-    if(this.data.completed !== null && this.data.completed !== undefined) {
+    
+    if (this.data.completed !== null && this.data.completed !== undefined) {
       this.edit.completed = this.data.completed;
     }
-    if(this.data.date.due !== null && this.data.date.due !== undefined) {
+    if (this.data.date.due !== null && this.data.date.due !== undefined) {
       this.edit.date = this.data.date;
     }
 
