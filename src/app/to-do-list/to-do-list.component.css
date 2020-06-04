@@ -27,10 +27,9 @@ a:hover {
   transform: scale(1.2);
 }
 .center-pos {
-  top: 50%;
-  left: 50%;
-  position: fixed;
-  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .card {
   height: 28rem;
@@ -300,6 +299,20 @@ span.longer-name {
   display: inline-block;
   text-decoration: none;
 }
+
+.bg-loading{
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  z-index: 99;
+  top: 0px;
+}
+.spinner-size {
+  height: 4rem;
+  width: 4rem;
+}
+
 @media screen and (max-width: 800px) {
     .card {
         height: 30rem;

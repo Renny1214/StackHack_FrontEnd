@@ -1,6 +1,6 @@
-<diV class="pt-4 back ">
+<diV class="pt-4 back center-pos">
   <div class="container">
-    <div class="card-deck center-pos">
+    <div class="card-deck">
       <div class="card cards">
         <div class="card-body text-center">
           <div class="hello ml-2">Hello</div>
@@ -86,13 +86,9 @@
                     <div><i class="far fa-clock"></i> 10:00</div>
                   </div>
                   <div class="d-flex justify-content-around edit mt-2">
-                    <a
-                      ><abbr title="Edit"><i class="fas fa-edit"></i></abbr
-                    ></a>
+                    <a><abbr title="Edit"><i class="fas fa-edit"></i></abbr></a>
                     <a>
-                      <abbr title="Mark as completed"
-                        ><i class="fas fa-check-circle"></i></abbr
-                    ></a>
+                      <abbr title="Mark as completed"><i class="fas fa-check-circle"></i></abbr></a>
                   </div>
                 </span>
                 <div class="border-bottom mt-3"></div>
@@ -104,68 +100,43 @@
       <div class="card cards">
         <div class="card-body text-center">
           <p class="card-text font-weight-bold task-head">Add a new Task</p>
-          <div class="form__group field">
-            <input
-              type="input"
-              class="form__field"
-              placeholder="Category"
-              name="category"
-              id="category"
-              required
-            />
-            <label for="category" class="form__label"
-              >Category (Personal, Grocery, Work)</label
-            >
-          </div>
-          <div class="form__group field">
-            <input
-              type="input"
-              class="form__field"
-              placeholder="event"
-              name="event"
-              id="event"
-              required
-            />
-            <label for="event" class="form__label">Event</label>
-          </div>
-          <div class="form__group field">
-            <input
-              type="date"
-              class="form__field"
-              placeholder="Date"
-              name="date"
-              id="date"
-              required
-            />
-            <label for="date" class="form__label">Date</label>
-          </div>
-          <div class="form__group field">
-            <input
-              type="time"
-              class="form__field"
-              placeholder="Time"
-              name="time"
-              id="time"
-              required
-            />
-            <label for="time" class="form__label">Time</label>
-          </div>
-          <div class="form__group field">
-            <input
-              type="text"
-              class="form__field"
-              placeholder="Priority"
-              name="priority"
-              id="priority"
-              required
-            />
-            <label for="priority" class="form__label"
-              >Priority (low, medium, high)
-            </label>
-          </div>
-          <a href="#" class="btn btn-bubble mt-3">Add Task</a>
+          <form method="dialog">
+            <div class="form__group field">
+              <input type="input" class="form__field" placeholder="Category" name="category" id="category"
+                (keyup)="enterCategory($event)" required />
+              <label for="category" class="form__label">Category (Personal, Grocery, Work)</label>
+            </div>
+            <div class="form__group field">
+              <input type="input" class="form__field" placeholder="event" name="event" id="event"
+                (keyup)="enterEvent($event)" required />
+              <label for="event" class="form__label">Event</label>
+            </div>
+            <div class="form__group field">
+              <input type="date" class="form__field" placeholder="Date" name="date" id="date" (blur)="enterDate($event)"
+                required />
+              <label for="date" class="form__label">Date</label>
+            </div>
+            <div class="form__group field">
+              <input type="time" class="form__field" placeholder="Time" name="time" id="time" required />
+              <label for="time" class="form__label">Time</label>
+            </div>
+            <div class="form__group field">
+              <input type="text" class="form__field" placeholder="Priority" name="priority" id="priority"
+                (keyup)="enterPriority($event)" required />
+              <label for="priority" class="form__label">Priority (low, medium, high)
+              </label>
+            </div>
+            <button class="btn btn-bubble mt-3" (click)="add()">Add Task</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </diV>
+
+<div *ngIf="showLoading" class="container-fluid bg-loading center-pos">
+  <div>
+    <span class="spinner-border spinner-border-xl text-success spinner-size"></span>
+    <p class="text-center pt-3 text-light font-weight-bolder">Loading</p>
+  </div>
+</div>
