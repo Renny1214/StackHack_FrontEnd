@@ -9,8 +9,13 @@ import { HttpClient } from '@angular/common/http';
 export class ToDoListComponent implements OnInit {
 
   priority;
-
   showLoading = false;
+  innerLoading = false;
+  current = this.getAll;
+
+  tasks = [];
+  completed;
+  allLength;
 
   data = {
     category: null,
@@ -25,7 +30,10 @@ export class ToDoListComponent implements OnInit {
 
   constructor(private httpCLient: HttpClient) { }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.getAll();
+    this.completedCount()
+  }
 
   enterCategory(event) {
     this.data.category = event.target.value;
@@ -50,22 +58,127 @@ export class ToDoListComponent implements OnInit {
 
     const url = 'https://stackhack-node.herokuapp.com/add';
 
-    if(index !== -1) {
+    if (index !== -1) {
       this.data.priority = index + 1;
-      
+
       this.httpCLient.post(url, this.data).subscribe((res) => {
         this.showLoading = false;
         console.log(res);
-        alert('Task Added');
+        
+        location.reload();
       },
-      error => {
-        this.showLoading = false;
-        alert('Error in adding task');
-      })
+        error => {
+          this.showLoading = false;
+          alert('Error in adding task');
+        })
     }
     else {
       this.showLoading = false;
       alert('Enter correct priority');
     }
+  }
+
+  getAll() {
+    const url = 'https://stackhack-node.herokuapp.com/all';
+    this.tasks.splice(0, this.tasks.length);
+    this.innerLoading = true;
+
+    this.httpCLient.get(url).subscribe((res: any) => {
+      this.innerLoading = false;
+      this.tasks = res;
+
+      this.allLength = this.tasks.length;
+    }, error => {
+      this.innerLoading = false;
+    });
+
+    this.current = this.getAll;
+  }
+  getProgress() {
+    const url = 'https://stackhack-node.herokuapp.com/getTask';
+    this.tasks.splice(0, this.tasks.length);
+    this.innerLoading = true;
+
+    this.httpCLient.get(url).subscribe((res: any) => {
+      this.innerLoading = false;
+      this.tasks = res;
+    }, error => {
+      this.innerLoading = false;
+    });
+
+    this.current = this.getProgress;
+  }
+  getCompleted() {
+    const url = 'https://stackhack-node.herokuapp.com/getCompleted';
+    this.tasks.splice(0, this.tasks.length);
+    this.innerLoading = true;
+
+    this.httpCLient.get(url).subscribe((res: any) => {
+      this.innerLoading = false;
+      this.tasks = res;
+    }, error => {
+      this.innerLoading = false;
+    })
+
+    this.current = this.getCompleted;
+  }
+  getByPriority() {
+    const url = 'https://stackhack-node.herokuapp.com/getTask';
+    this.tasks.splice(0, this.tasks.length);
+    this.innerLoading = true;
+
+    this.httpCLient.get(url).subscribe((res: any) => {
+      this.tasks = res;
+
+      this.tasks.sort((a, b) => {
+        if (a.priority < b.priority) {
+          return -1;
+        }
+        else if (a.priority > b.priority) {
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      });
+
+      this.innerLoading = false;
+    }, error => {
+      this.innerLoading = false;
+    });
+
+    this.current = this.getByPriority;
+  }
+
+  getDate(date) {
+    const obj = new Date(date);
+    const str = obj.getDate() + '-' + obj.getMonth() + '-' + obj.getFullYear();
+
+    return str;
+  }
+
+  markCompleted(i) {
+    const url = 'https://stackhack-node.herokuapp.com/completed/' + this.tasks[i]._id;
+
+    this.httpCLient.get(url).subscribe((res: any) => {
+      alert('Task marked completed');
+      this.current();
+    });
+  }
+
+  getCurrentDate() {
+    const date = new Date();
+    const day = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+    return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + "  " + day[date.getDay() - 1];
+  }
+
+  completedCount() {
+    const url = 'https://stackhack-node.herokuapp.com/getCompleted';
+    let arr = [];
+
+    this.httpCLient.get(url).subscribe((res: any) => {
+      arr = res;
+      this.completed = arr.length;
+    });
   }
 }

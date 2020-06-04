@@ -5,11 +5,11 @@
         <div class="card-body text-center">
           <div class="hello ml-2">Hello</div>
           <!-- <div class="name font-weight-bold ml-2">Renny</div> -->
-          <div class="date ml-2">31st January,2020</div>
+          <div class="date ml-2">{{ getCurrentDate() }}</div>
           <div class="border-bottom mt-3"></div>
           <div class="row">
             <div class="col-sm-6 border-right mt-2">
-              <span class="num ">57</span>
+              <span class="num ">{{ this.allLength }}</span>
               <div class="task">CREATED TASKS</div>
 
               <div class="mt-3 border-top">
@@ -35,7 +35,7 @@
               </div>
             </div>
             <div class="col-sm-6 mt-2">
-              <span class="num ">13</span>
+              <span class="num ">{{ completed }}</span>
               <div class="task">COMPLETED TASKS</div>
               <div class="mt-3 border-top">
                 <div class="mt-3">
@@ -60,34 +60,41 @@
           <p class="card-text font-weight-bold task-head">Work Projects</p>
           <div class="second-date">12th January ,2020</div>
           <div class="d-flex justify-content-around pt-4">
-            <a href="#" class="sub-head">ALL</a>
-            <a href="#" class="sub-head">IN PROGRESS</a>
-            <a href="#" class="sub-head">COMPLETED</a>
-            <a href="#" class="sub-head">PRIORITY</a>
+            <a href="#" class="sub-head" (click)="getAll()">ALL</a>
+            <a href="#" class="sub-head" (click)="getProgress()">IN PROGRESS</a>
+            <a href="#" class="sub-head" (click)="getCompleted()">COMPLETED</a>
+            <a href="#" class="sub-head" (click)="getByPriority()">PRIORITY</a>
           </div>
           <diV class="border-bottom mt-2"></diV>
+
+          <!--loading-->
+          <div *ngIf="innerLoading" class="text-center p-5">
+            <span class="spinner-border spinner-border-sm text-success"></span>
+            <div>Loading</div>
+          </div>
+
           <div class="text-left mt-2">
-            <li *ngFor="let user of users; index as i" class="li-items mt-3">
+            <li *ngFor="let task of tasks; index as i" class="li-items mt-3">
               <div class="expanded-text">
                 <span class="short-name">
                   <i class="far fa-circle icon"></i>
-                  <span class="heading"> Call Mrs Barbara</span>
-                  <div class="category ml-4">Work Projects</div>
+                  <span class="heading p-2">{{ task.task }}</span>
+                  <div class="category ml-4">{{ task.category }}</div>
                 </span>
                 <span class="longer-name">
                   <i class="far fa-circle icon"></i>
-                  <span class="heading"> Call Mrs Barbara</span>
-                  <div class="category ml-4">Work Projects</div>
+                  <span class="heading p-2">{{ task.task }}</span>
+                  <div class="category ml-4">{{ task.category }}</div>
                   <div class="d-flex justify-content-around time mt-2">
                     <div>
                       <i class="fas fa-calendar-alt"></i>
-                      <span> 12th jan ,2002</span>
+                      <span> {{ getDate(task.date.due) }}</span>
                     </div>
-                    <div><i class="far fa-clock"></i> 10:00</div>
+                    <div><i class="far fa-clock"></i>  00:00</div>
                   </div>
                   <div class="d-flex justify-content-around edit mt-2">
                     <a><abbr title="Edit"><i class="fas fa-edit"></i></abbr></a>
-                    <a>
+                    <a (click)="markCompleted(i)">
                       <abbr title="Mark as completed"><i class="fas fa-check-circle"></i></abbr></a>
                   </div>
                 </span>
