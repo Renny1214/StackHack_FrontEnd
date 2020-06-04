@@ -97,6 +97,7 @@ export class ToDoListComponent implements OnInit {
       this.tasks = res;
 
       this.allLength = this.tasks.length;
+      this.personal = this.work = this.school = this.shopping = this.other = 0;
 
       for (let i = 0; i < this.tasks.length; i++) {
         if (this.tasks[i].category.toLowerCase() === 'personal') {
